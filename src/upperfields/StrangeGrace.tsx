@@ -1,7 +1,6 @@
 
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { Avatar, Box, Grid, Paper, Stack, Typography } from '@mui/material';
-import { useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import postConstants from '../constants/postConstants';
 
