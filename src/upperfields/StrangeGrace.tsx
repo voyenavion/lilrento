@@ -1,7 +1,6 @@
 
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { Avatar, Box, Grid, Paper, Stack, Typography } from '@mui/material';
-import { useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import postConstants from '../constants/postConstants';
 
@@ -47,7 +46,6 @@ const StrangeGrace = () => {
       <meta name="description" content={props.description} />
       <meta property="og:title" content={props.title} />
       <meta property="og:description" content={props.description} />
-      <meta property="og:url" content={props.url} />
       <meta property="og:image" content={props.image} />
       <Stack
         sx={{
