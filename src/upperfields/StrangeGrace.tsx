@@ -9,22 +9,22 @@ import postConstants from '../constants/postConstants';
 const projects = [
   {
     text: 'Bandcamp',
-    image: '/bandcamp.jpg',
+    image: '/bandcamp.webp',
     link: 'https://upperfields.bandcamp.com/track/strange-grace'
   },
   {
     text: 'Apple Music',
-    image: '/apple-music.jpg',
+    image: '/apple-music.webp',
     link: 'https://music.apple.com/us/album/strange-grace-single/1895433033'
   },
   {
     text: 'Tidal',
-    image: '/tidal.jpg',
+    image: '/tidal.webp',
     link: 'https://tidal.com/artist/7032197'
   },
   {
     text: 'Spotify',
-    image: '/spotify.jpeg',
+    image: '/spotify.webp',
     link: 'https://open.spotify.com/track/3x20iBWgUrP7xf4OYPm8UH?si=7e974ed5421c4ef9'
   }
 ]
@@ -38,6 +38,7 @@ const StrangeGrace = () => {
   const black = '#15151579'
   const lighterBlack = '#27272779'
 
+
   return (
     <>
       <title>{props.title}</title>
@@ -46,6 +47,7 @@ const StrangeGrace = () => {
       <meta name="description" content={props.description} />
       <meta property="og:title" content={props.title} />
       <meta property="og:description" content={props.description} />
+      <meta property="og:url" content={props.url} />
       <meta property="og:image" content={props.image} />
       <Stack
         sx={{
@@ -84,7 +86,7 @@ const StrangeGrace = () => {
           >
             <Box
               component="img"
-              src="/000526560002_b.jpg"
+              src="/000526560002_b.webp"
               sx={{
                 width: '50%',
                 height: 'auto'
@@ -106,6 +108,7 @@ const StrangeGrace = () => {
         <ReactPlayer
           src="https://www.youtube.com/embed/W0Quneu94kg?si=zvOze7mJxZ9vGHjq"
           style={{ width: '40%', height: 'auto', aspectRatio: '16/9' }}
+          preload="true"
         />
 
         <Stack

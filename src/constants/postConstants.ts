@@ -1,12 +1,14 @@
 export default [
   {
-    title: 'Strange Grace',
+    title:
+      'Strange Grace - A Song By Upperfields - On Lil Rento - An Independent Record Label',
     creator: 'Upperfields',
-    url: 'https://www.shaungould.com/upperfields/strange-grace',
-    image: '/000526560002_b.jpg',
-    description: 'Strange Grace by Upperfields',
-    siteName: 'Upperfields'
-
-  },
+    url: 'https://lilrento.com/upperfields/strange-grace',
+    image: '/000526560002_b.webp',
+    description:
+      'Strange Grace - A Song By Upperfields - On Lil Rento - An Independent Record Label',
+    siteName:
+      'Strange Grace - A Song By Upperfields - On Lil Rento - An Independent Record Label'
+  }
 ]
 
