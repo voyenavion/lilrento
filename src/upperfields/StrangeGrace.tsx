@@ -1,8 +1,8 @@
 
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import { Avatar, Box, Grid, Paper, Stack, Typography } from '@mui/material';
-import ReactPlayer from 'react-player';
+import { Avatar, Box, Container, Grid, Paper, Stack, Typography } from '@mui/material';
 import postConstants from '../constants/postConstants';
+import './StrangeGrace.css';
 
 
 
@@ -86,7 +86,7 @@ const StrangeGrace = () => {
           >
             <Box
               component="img"
-              src="/000526560002_b.webp"
+              src="/000526560002_b.jpg"
               sx={{
                 width: '50%',
                 height: 'auto'
@@ -104,13 +104,18 @@ const StrangeGrace = () => {
             </Box>
           </Stack>
         </Paper>
-
-        <ReactPlayer
-          src="https://www.youtube.com/embed/W0Quneu94kg?si=zvOze7mJxZ9vGHjq"
-          style={{ width: '40%', height: 'auto', aspectRatio: '16/9' }}
-          preload="true"
-        />
-
+              <Container maxWidth="sm">
+      
+        <div className="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/W0Quneu94kg?si=Q4FSsxlYg8Lo6cgJ"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
+        </div>
+      </Container>
         <Stack
           spacing={1}
           sx={{
