@@ -17,6 +17,7 @@
     "@mui/material": "latest",
     "react": "^19",
     "react-dom": "^19",
+    "react-player": "^3.4.0",
     "react-router-dom": "latest",
     "save-dev": "^0.0.1-security",
     "youtube-player": "^5.6.0"
