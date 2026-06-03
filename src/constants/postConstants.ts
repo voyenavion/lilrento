@@ -1,14 +1,16 @@
 export default [
   {
     title:
-      'title:Strange Grace - A Song By Upperfields - On Lil Rento - An Independent Record Label',
+      'Strange Grace - a song by Upperfields - on Lil Rento - Philly\'s favorite record label',
     creator: 'Upperfields',
     url: 'https://lilrento.com/upperfields/strange-grace',
-    image: '/000526560002_b.jpg',
+    image: '/000526560002_b_sm.jpg',
     description:
-      'description:Strange Grace - A Song By Upperfields - On Lil Rento - An Independent Record Label',
+      'A how-to on crushing existential crisis with self-soothing from the depths',
     siteName:
-      'siteName:Strange Grace - A Song By Upperfields - On Lil Rento - An Independent Record Label'
+      'Lil Rento, Philly\'s favorite record label',
+    ogTitle:'Strange Grace by Upperfields',
+    ogDescription:'Brought to you by Lil Rento, Philly\'s favorite record label'  
   }
 ]
 
