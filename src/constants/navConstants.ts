@@ -1,3 +1,4 @@
 export default {
-  strangeGrace: "upperfields/strange-grace",
+  strangeGraceLinks: "upperfields/strange-grace/links",
+  strangeGrace: "upperfields/strange-grace"
 };

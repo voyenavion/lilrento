@@ -1,50 +1,34 @@
 
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import { Avatar, Box, Container, Grid, Paper, Stack, Typography } from '@mui/material';
-import './StrangeGrace.css';
-
-
-
-const projects = [
-  {
-    text: 'Bandcamp',
-    image: '/bandcamp.webp',
-    link: 'https://upperfields.bandcamp.com/track/strange-grace'
-  },
-  {
-    text: 'Apple Music',
-    image: '/apple-music.webp',
-    link: 'https://music.apple.com/us/album/strange-grace-single/1895433033'
-  },
-  {
-    text: 'Tidal',
-    image: '/tidal.webp',
-    link: 'https://tidal.com/artist/7032197'
-  },
-  {
-    text: 'Spotify',
-    image: '/spotify.webp',
-    link: 'https://open.spotify.com/track/3x20iBWgUrP7xf4OYPm8UH?si=7e974ed5421c4ef9'
-  }
-]
-
-
-
-
+import { Box, Paper, Stack, Typography } from '@mui/material';
+import YouTubePlayer from 'youtube-player';
 
 const StrangeGrace = () => {
   const black = '#15151579'
   const lighterBlack = '#27272779'
-
-
+  
   return (
     <>
-      
+      <script>
+        {`let player
+  player = YouTubePlayer('video-player')
+
+  // 'loadVideoById' is queued until the player is ready to receive API calls.
+  player.loadVideoById('M7lc1UVf-VE')
+
+  // 'playVideo' is queue until the player is ready to received API calls and after 'loadVideoById' has been called.
+  player.playVideo()
+
+  // 'stopVideo' is queued after 'playVideo'.
+  player.stopVideo().then(() => {
+    // Every function returns a promise that is resolved after the target function has been executed.
+  })`}
+      </script>
+
       <Stack
         sx={{
           width: '100%',
           height: 'auto',
-          background: black,
+          background: 'black',
           color: 'grey.200',
           m: 2,
           paddingBottom: 2,
@@ -52,14 +36,17 @@ const StrangeGrace = () => {
           justifyContent: 'center',
           alignItems: 'center'
         }}
-        spacing={4}
+        spacing={2}
       >
+        <div id="video-player">plsssssssssssssssssay</div>
+
         <Paper
           elevation={10}
           sx={{
             m: 2,
             p: 2,
             width: '90%',
+            maxWidth: '1000px',
             height: 'auto',
             background: lighterBlack,
             color: 'grey.200',
@@ -77,9 +64,9 @@ const StrangeGrace = () => {
           >
             <Box
               component="img"
-              src="/000526560002_b.jpg"
+              src="/000526560002_b_sm.jpg"
               sx={{
-                width: '50%',
+                width: '80%',
                 height: 'auto'
               }}
             ></Box>
@@ -95,75 +82,6 @@ const StrangeGrace = () => {
             </Box>
           </Stack>
         </Paper>
-              <Container maxWidth="sm">
-      
-        <div className="video-container">
-          <iframe
-            src="https://www.youtube.com/embed/W0Quneu94kg?si=Q4FSsxlYg8Lo6cgJ"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
-        </div>
-      </Container>
-        <Stack
-          spacing={1}
-          sx={{
-            width: '90%',
-            maxWidth: '900px',
-            alignContent: 'center',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}
-        >
-          {projects.map((e, index) => {
-            return (
-              <Paper
-                component="a"
-                href={e.link}
-                target="_blank" // Opens in new tab
-                rel="noopener noreferrer"
-                key={index}
-                elevation={0}
-                sx={{
-                  flexFlow: 'row',
-                  background: lighterBlack,
-                  color: 'grey.200',
-                  width: '90%',
-                  maxWidth: '300px',
-                  height: 'auto',
-                  textDecoration: 'none',
-                  '&:hover': { color: 'grey.600' }
-                }}
-              >
-                <Grid container spacing={2} sx={{ alignItems: 'center' }}>
-                  <Grid size={2}>
-                    <Avatar
-                      variant="square"
-                      sx={{ width: '100%', height: 'auto', m: 1 }}
-                      src={e.image}
-                    />
-                  </Grid>
-                  <Grid size={8}>
-                    <Typography variant="body2" align="center">
-                      {e.text}
-                    </Typography>
-                  </Grid>
-                  <Grid size={2}>
-                    <PlayArrowIcon
-                      sx={{
-                        align: 'right',
-                        width: '100%',
-                        height: 'auto'
-                      }}
-                    ></PlayArrowIcon>
-                  </Grid>
-                </Grid>
-              </Paper>
-            )
-          })}
-        </Stack>
       </Stack>
     </>
   )
