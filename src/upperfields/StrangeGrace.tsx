@@ -12,7 +12,7 @@ const StrangeGrace = () => {
  const urlInputRef = useRef<HTMLInputElement | null>(null)
 
  const initialState = {
-   src: 'https://www.youtube.com/watch?v=W0Quneu94kg',
+   src: 'https://open.spotify.com/episode/5Jo9ncrz2liWiKj8inZwD2',
    pip: false,
    playing: false,
    controls: false,
