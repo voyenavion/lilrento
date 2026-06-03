@@ -188,10 +188,7 @@ const StrangeGrace = () => {
     setState((prevState) => ({ ...prevState, duration: player.duration }))
   }
 
-  const handleClickFullscreen = () => {
-    const reactPlayer = document.querySelector('.react-player')
-    if (reactPlayer) screenfull.request(reactPlayer)
-  }
+ 
 
   const renderLoadButton = (src: string, label: string) => {
     return (
@@ -293,9 +290,7 @@ const StrangeGrace = () => {
                 <button type="button" onClick={handlePlayPause}>
                   {playing ? 'Pause' : 'Play'}
                 </button>
-                <button type="button" onClick={handleClickFullscreen}>
-                  Fullscreen
-                </button>
+                
                 {src && ReactPlayer.canEnablePIP?.(src) && (
                   <button type="button" onClick={handleTogglePIP}>
                     {pip ? 'Disable PiP' : 'Enable PiP'}
