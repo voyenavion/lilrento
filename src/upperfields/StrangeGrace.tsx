@@ -1,7 +1,6 @@
 
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { Avatar, Box, Container, Grid, Paper, Stack, Typography } from '@mui/material';
-import postConstants from '../constants/postConstants';
 import './StrangeGrace.css';
 
 
@@ -31,7 +30,6 @@ const projects = [
 
 
 
-const props = postConstants[0]
 
 
 const StrangeGrace = () => {
