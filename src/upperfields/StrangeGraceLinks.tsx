@@ -1,7 +1,9 @@
 
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import { Avatar, Box, Container, Grid, Paper, Stack, Typography } from '@mui/material';
+import { PlayArrow } from '@mui/icons-material';
+import { Avatar, Link, Container, Grid, Paper, Stack, Typography } from '@mui/material';
 import './StrangeGraceLinks.css';
+import { useNavigate } from 'react-router-dom'
+
 
 
 
@@ -35,7 +37,7 @@ const projects = [
 const StrangeGraceLinks = () => {
   const black = '#15151579'
   const lighterBlack = '#27272779'
-
+  const navigate = useNavigate();
 
   return (
     <>
@@ -45,61 +47,21 @@ const StrangeGraceLinks = () => {
           height: 'auto',
           background: black,
           color: 'grey.200',
-          m: 2,
-          paddingBottom: 2,
+          p: 2,
+          paddingTop: 10,
           alignContent: 'center',
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
+          justifyItems: 'center',
         }}
         spacing={2}
       >
-        <Paper
-          elevation={10}
-          sx={{
-            m: 2,
-            p: 2,
-            width: '90%',
-            maxWidth: '1000px',
-            height: 'auto',
-            background: lighterBlack,
-            color: 'grey.200',
-            alignContent: 'center',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}
-        >
-          <Stack
-            sx={{
-              alignContent: 'center',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}
-          >
-            <Box
-              component="img"
-              src="/000526560002_b_sm.jpg"
-              sx={{
-                width: '80%',
-                height: 'auto'
-              }}
-            ></Box>
-            <Box>
-              <Typography variant="h4" align="center">
-                {'Strange Grace'}
-              </Typography>
-            </Box>
-            <Box>
-              <Typography variant="h6" align="center">
-                {'Upperfields'}
-              </Typography>
-            </Box>
-          </Stack>
-        </Paper>
+        
         <Container
           maxWidth={"sm"}
           component={Paper}
           elevation={5}
-          sx={{ background: lighterBlack, p: 2, width: '80%', aspectRatio: '16/9'
+          sx={{ background: lighterBlack, p:2, width: '80%', aspectRatio: '16/9'
            }}
         >
             <div className="video-container">
@@ -144,7 +106,7 @@ const StrangeGraceLinks = () => {
                   <Grid size={2}>
                     <Avatar
                       variant="square"
-                      sx={{ width: '60%', height: 'auto', m: 1 }}
+                      sx={{ width: '70%', height: 'auto', m: 1 }}
                       src={e.image}
                     />
                   </Grid>
@@ -154,19 +116,29 @@ const StrangeGraceLinks = () => {
                     </Typography>
                   </Grid>
                   <Grid size={2}>
-                    <PlayArrowIcon
+                    <PlayArrow
                       sx={{
                         align: 'right',
                         width: '60%',
                         height: 'auto'
                       }}
-                    ></PlayArrowIcon>
+                    ></PlayArrow>
                   </Grid>
                 </Grid>
               </Paper>
             )
           })}
         </Stack>
+        <Link
+                  component="button"
+                  underline="hover"
+                  onClick={()=>{navigate('/upperfields/strange-grace')}}
+                  sx={{ color: 'grey.200', textDecorationColor: 'grey.600', p:2 }}
+                >
+                  <Typography variant="body2" align="center">
+                    {'back'}
+                  </Typography>
+                </Link>
       </Stack>
     </>
   )
