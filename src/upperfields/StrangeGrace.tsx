@@ -1,67 +1,105 @@
 
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import { Avatar, Box, Container, Grid, Paper, Stack, Typography } from '@mui/material';
-import postConstants from '../constants/postConstants';
-import './StrangeGrace.css';
+import { Pause, PlayArrow } from '@mui/icons-material'
+import { Box, Button, Link, Paper, Stack, Typography } from '@mui/material'
+import { useCallback, useRef, useState } from 'react';
+import ReactPlayer from 'react-player'
+import { useNavigate } from 'react-router-dom'
 
-
-
-const projects = [
-  {
-    text: 'Bandcamp',
-    image: '/bandcamp.webp',
-    link: 'https://upperfields.bandcamp.com/track/strange-grace'
-  },
-  {
-    text: 'Apple Music',
-    image: '/apple-music.webp',
-    link: 'https://music.apple.com/us/album/strange-grace-single/1895433033'
-  },
-  {
-    text: 'Tidal',
-    image: '/tidal.webp',
-    link: 'https://tidal.com/artist/7032197'
-  },
-  {
-    text: 'Spotify',
-    image: '/spotify.webp',
-    link: 'https://open.spotify.com/track/3x20iBWgUrP7xf4OYPm8UH?si=7e974ed5421c4ef9'
-  }
-]
-
-
-
-const props = postConstants[0]
 
 
 const StrangeGrace = () => {
   const black = '#15151579'
   const lighterBlack = '#27272779'
+  
+   const navigate = useNavigate()
+ 
+ const playerRef = useRef<HTMLVideoElement | null>(null)
+ const urlInputRef = useRef<HTMLInputElement | null>(null)
+
+ const initialState = {
+   src: 'https://www.youtube.com/watch?v=W0Quneu94kg&t=0s',
+   pip: false,
+   playing: false,
+   controls: false,
+   light: false,
+   volume: 1,
+   muted: false,
+   played: 0,
+   loaded: 0,
+   duration: 0,
+   playbackRate: 1.0,
+   loop: false,
+   seeking: false,
+   loadedSeconds: 0,
+   playedSeconds: 0
+ }
+
+ type PlayerState = Omit<typeof initialState, 'src'> & {
+   src?: string
+ }
+
+ const [state, setState] = useState<PlayerState>(initialState)
+
+ const load = (src?: string) => {
+   setState((prevState) => ({
+     ...prevState,
+     src,
+     played: 0,
+     loaded: 0,
+     pip: false
+   }))
+ }
+
+ const handlePlayPause = () => {
+   setState((prevState) => ({ ...prevState, playing: !prevState.playing }))
+ }
+
+ const handleEnded = () => {
+       setState((prevState) => ({ ...prevState, playing: !prevState.playing }))
+ }
 
 
+  
+
+ 
+  const setPlayerRef = useCallback((player: HTMLVideoElement) => {
+    if (!player) return
+    playerRef.current = player
+    console.log(player)
+  }, [])
+
+  
+
+  const {
+    src,
+    playing,
+    controls,
+    light,
+    volume,
+    muted,
+    loop,
+    played,
+    loaded,
+    duration,
+    playbackRate,
+    pip
+  } = state
+
+  const SEPARATOR = ' · '
   return (
     <>
-      <title>{props.title}</title>
-      <link rel="icon" type="image/svg+xml" href={props.image} />
-
-      <meta name="description" content={props.description} />
-      <meta property="og:title" content={props.title} />
-      <meta property="og:description" content={props.description} />
-      <meta property="og:url" content={props.url} />
-      <meta property="og:image" content={props.image} />
       <Stack
         sx={{
           width: '100%',
           height: 'auto',
           background: black,
           color: 'grey.200',
-          m: 2,
-          paddingBottom: 2,
+          padding: 2,
           alignContent: 'center',
           justifyContent: 'center',
           alignItems: 'center'
         }}
-        spacing={4}
+        spacing={2}
       >
         <Paper
           elevation={10}
@@ -69,6 +107,7 @@ const StrangeGrace = () => {
             m: 2,
             p: 2,
             width: '90%',
+            maxWidth: '1000px',
             height: 'auto',
             background: lighterBlack,
             color: 'grey.200',
@@ -88,7 +127,7 @@ const StrangeGrace = () => {
               component="img"
               src="/000526560002_b.jpg"
               sx={{
-                width: '50%',
+                width: '80%',
                 height: 'auto'
               }}
             ></Box>
@@ -97,6 +136,9 @@ const StrangeGrace = () => {
                 {'Strange Grace'}
               </Typography>
             </Box>
+            <Button onClick={handlePlayPause} sx={{ color: 'grey.200' }}>
+              {playing ? <Pause /> : <PlayArrow />}
+            </Button>
             <Box>
               <Typography variant="h6" align="center">
                 {'Upperfields'}
@@ -104,75 +146,51 @@ const StrangeGrace = () => {
             </Box>
           </Stack>
         </Paper>
-              <Container maxWidth="sm">
-      
-        <div className="video-container">
-          <iframe
-            src="https://www.youtube.com/embed/W0Quneu94kg?si=Q4FSsxlYg8Lo6cgJ"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
-        </div>
-      </Container>
-        <Stack
-          spacing={1}
+        <ReactPlayer
+          ref={setPlayerRef}
+          className="react-player"
+          style={{
+            position: 'absolute',
+            width: '1px',
+            height: '1px',
+            opacity: '0',
+            overflow: 'hidden',
+            pointerEvents: 'none'
+          }}
+          onEnded={() => {
+            handleEnded()
+          }}
+          src={src}
+          pip={pip}
+          playing={playing}
+          controls={controls}
+          light={light}
+          loop={loop}
+          playbackRate={playbackRate}
+          volume={volume}
+          muted={muted}
+          config={{
+            youtube: {
+              color: 'white'
+            }
+          }}
+        />
+        <Link
+          component="button"
+          underline="hover"
+          onClick={() => {
+            navigate('/upperfields/strange-grace/links')
+          }}
           sx={{
-            width: '90%',
-            maxWidth: '900px',
-            alignContent: 'center',
-            justifyContent: 'center',
-            alignItems: 'center'
+            color: 'grey.200',
+            textDecorationColor: 'grey.600',
+            p:2. 
           }}
         >
-          {projects.map((e, index) => {
-            return (
-              <Paper
-                component="a"
-                href={e.link}
-                target="_blank" // Opens in new tab
-                rel="noopener noreferrer"
-                key={index}
-                elevation={0}
-                sx={{
-                  flexFlow: 'row',
-                  background: lighterBlack,
-                  color: 'grey.200',
-                  width: '90%',
-                  maxWidth: '300px',
-                  height: 'auto',
-                  textDecoration: 'none',
-                  '&:hover': { color: 'grey.600' }
-                }}
-              >
-                <Grid container spacing={2} sx={{ alignItems: 'center' }}>
-                  <Grid size={2}>
-                    <Avatar
-                      variant="square"
-                      sx={{ width: '100%', height: 'auto', m: 1 }}
-                      src={e.image}
-                    />
-                  </Grid>
-                  <Grid size={8}>
-                    <Typography variant="body2" align="center">
-                      {e.text}
-                    </Typography>
-                  </Grid>
-                  <Grid size={2}>
-                    <PlayArrowIcon
-                      sx={{
-                        align: 'right',
-                        width: '100%',
-                        height: 'auto'
-                      }}
-                    ></PlayArrowIcon>
-                  </Grid>
-                </Grid>
-              </Paper>
-            )
-          })}
-        </Stack>
+          <Typography variant="body2" align="center">
+            {'links'}
+          </Typography>
+        </Link>
       </Stack>
     </>
   )
